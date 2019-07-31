@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Consumer } from "../src/context/index";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <Consumer>
+          {context => {
+            return (
+              <div>
+                {" "}
+                <button onClick={() => context.actions.addBook()}>
+                  Add Book
+                </button>
+                <button onClick={() => context.actions.addMember()}>
+                  Add Member
+                </button>
+                <button onClick={() => context.actions.checkoutBook(0, 0)}>
+                  Checkout
+                </button>
+                <button onClick={() => context.actions.checkinBook(0, 0)}>
+                  Checkout
+                </button>
+              </div>
+            );
+          }}
+        </Consumer>
+      </div>
+    );
+  }
 }
 
 export default App;
